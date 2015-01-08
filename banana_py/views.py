@@ -9,4 +9,5 @@ class BananasCompleteView(TemplateView):
 
     def get(self, request):
         Bananas_OAuth().on_complete(request)
+        print request.GET['complete_url']
         return HttpResponseRedirect(request.GET['complete_url'])
