@@ -56,6 +56,16 @@ class Bananas_OAuth(object):
 
         return response
 
+    def on_complete(self, request):
+        try:
+            code = request.GET['code']
+        except KeyError:
+            error = request.GET.get('error', None)
+            return self.render_to_response({'error': error})
+
+        bananas = Bananas_OAuth().authenticate(code)
+        request.session['mailchimp_details'] = bananas
+
     def authorize_url(self):
         return u'%s?response_type=code&client_id=%s&redirect_uri=%s' % (
             self.mc_authorize_uri, self.client_id, urlencode(self.redirect_uri))
