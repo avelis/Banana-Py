@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.http import HttpResponseRedirect
 
@@ -9,5 +10,4 @@ class BananasCompleteView(TemplateView):
 
     def get(self, request):
         Bananas_OAuth().on_complete(request)
-        print request.GET['complete_url']
-        return HttpResponseRedirect(request.GET['complete_url'])
+        return HttpResponseRedirect(settings.MAILCHIMP_COMPLETE_URI)
