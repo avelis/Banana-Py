@@ -10,7 +10,10 @@ setup(
     author_email='kenneth@gigantuan.net',
     url='https://github.com/kennethlove/Banana-Py/',
     license='BSD',
-    packages=['banana_py'],
+    packages=[
+        'banana_py',
+        'banana_py.templatetags'
+    ],
     zip_safe=False,
     install_requires=['oauth2', 'simplejson', 'django'],
     include_package_data=True,
